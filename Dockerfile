@@ -13,8 +13,6 @@ COPY . .
 
 RUN npm ci --only=production
 
-RUN rsync -avI ./assets/lib/* ./assets/ && rm -R ./assets/lib
-
 RUN /usr/local/bin/node-prune
 
 FROM node:alpine3.13 
