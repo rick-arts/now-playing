@@ -1,0 +1,8 @@
+extends templates/layout
+
+
+block main-content
+
+	div.stats
+		+stats-card({title: "scrobbles", value: scrobbles || 0})(id="scrobbles")
+		+stats-song-card(current_track)(id="latest_song")

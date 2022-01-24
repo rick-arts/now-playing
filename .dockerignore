@@ -1,0 +1,14 @@
+.env
+.env.*
+npm-debug.log
+docker-compose*
+Dockerfile
+Dockerfile.*
+.dockerignore
+.gitignore
+.github
+.gitkeep
+example
+deploy
+uploads
+.git

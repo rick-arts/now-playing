@@ -1,0 +1,115 @@
+:root{
+	--title-font: 'Permanent Marker', cursive;
+	--regular-font: 'Architects Daughter', cursive; 
+}
+
+
+body {
+  background: #000;
+  color: #fff;
+	font-family: var(--regular-font);
+}
+
+#main-page{
+	min-width: 100%;
+}
+
+/*
+ Stats
+*/
+
+.stats {
+  display: flex;
+}
+
+.stats-song-card,
+.stats-card {
+  background-color: #1c1c1e;
+  border-radius: 8px;
+	flex: 1;
+	margin: 10px;
+	position: relative;
+	min-height: 200px;
+}
+
+.stats-song-card {
+  padding: 10px 20px;
+}
+
+
+.stats-title{
+	text-transform: uppercase;
+	font-weight: bold;
+	font-family: var(--title-font);
+	font-size: 1.2em;
+}
+
+/*
+	Stats card
+*/
+
+.stats-card{
+	display: flex;
+}
+
+.stats-card .stats-title{
+	position: absolute;
+	left: 20px;
+	top: 10px;
+}
+
+.stats-card .stats-content{
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	text-align: center;
+	font-size: 4em;
+	margin: auto;
+	height: 100%;
+}
+
+/*	
+	Stats song card
+*/
+
+.stats-song-card .stats-content {
+  display: flex;
+	padding: 10px 0;
+}
+
+.stats-song-card .stats-content_left {
+	width: 30%;
+	padding-top: 30%;
+	background: transparent;
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+	margin: auto;
+}
+
+.stats-song-card .stats-content_right{
+	flex: 1;
+	padding: 10px 20px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	text-align: center;
+	font-size: 2.2em;
+}
+
+.stats-song-card .stats-artist{
+	font-family: var(--title-font);
+}
+
+@media only screen and (max-width: 1200px){
+	.stats{
+		flex-direction: column;
+	}
+}
+
+@media only screen and (max-width: 767px){
+	.stats-song-card .stats-content{
+		flex-direction: column;
+	}
+}

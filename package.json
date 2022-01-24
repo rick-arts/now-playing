@@ -1,0 +1,32 @@
+{
+  "name": "now-playing",
+  "version": "1.0.0",
+  "description": "Now Playing Screen",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rick-arts/now-playing.git"
+  },
+  "author": "Rick Arts",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rick-arts/now-playing/issues"
+  },
+  "homepage": "https://github.com/rick-arts/now-playing#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "cron": "^1.8.2",
+    "deepcopy": "^2.1.0",
+    "dotenv": "^14.2.0",
+    "express": "^4.17.2",
+    "https": "^1.0.0",
+    "md5": "^2.3.0",
+    "moment": "^2.29.1",
+    "pug": "^3.0.2",
+    "ws": "^8.4.2"
+  }
+}

@@ -1,0 +1,16 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ production ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build the Docker image
+      run: |
+        echo "${{ secrets.REGISTRY_PASSWORD }}" | docker login -u "${{ secrets.REGISTRY_USERNAME }}" --password-stdin ${{ secrets.REGISTRY_URL }}
+        docker build . --file Dockerfile -t ${{ secrets.REGISTRY_URL }}/rickarts/now-playing
+        docker push ${{ secrets.REGISTRY_URL }}/rickarts/now-playing
