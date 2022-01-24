@@ -1,4 +1,4 @@
-const ws = new WebSocket(`wss://${location.host}/ws`);
+const ws = new WebSocket(`wss://${location.host}/wss`);
 
 ws.onmessage = function (event) {
 	const data = JSON.parse(event.data);
