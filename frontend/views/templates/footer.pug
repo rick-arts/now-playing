@@ -1,4 +1,7 @@
 footer
 
+script(type="text/javascript")
+		.
+			const WEBSOCKET_URL = "#{process.env.WEBSOCKET_PROTOCOL || 'wss'}://"+location.host
 script(type="text/javascript" src="/assets/js/jquery.min.js?v="+VERSION)   
 script(type="text/javascript" src="/assets/js/websocket.js?v="+VERSION)

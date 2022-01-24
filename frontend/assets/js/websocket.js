@@ -1,4 +1,4 @@
-const ws = new WebSocket(`wss://${location.host}/wss`);
+const ws = new WebSocket(WEBSOCKET_URL);
 
 ws.onmessage = function (event) {
 	const data = JSON.parse(event.data);
@@ -9,7 +9,6 @@ ws.onmessage = function (event) {
 	else if(data.channel == "user_info"){
 		refreshScrobbles(data);
 	}
-	
 };
 
 ws.onclose = function(){
