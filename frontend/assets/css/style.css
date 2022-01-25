@@ -37,10 +37,6 @@ body {
 }
 */
 
-.stats-song-card .card-title{
-	margin-top: 10px;
-	margin-left: 20px;
-}
 
 .card-title {
   text-transform: uppercase;
@@ -80,7 +76,8 @@ body {
 
 .stats-song-card .stats-content {
   display: flex;
-  padding: 10px 20px 20px;
+  padding: 40px 20px;
+  flex: 1;
 }
 
 .stats-song-card .stats-content_left {
@@ -157,6 +154,39 @@ body {
 	display: block;
 }
 
+body.page-current .stats-song-card{
+  height: calc(100vh - 20px);
+  display: flex;
+  justify-content: center;
+}
+
+body.page-current .card-title{
+  position: absolute;
+}
+
+body.page-current .stats-song-card .stats-content_left{
+  width: 50%;
+  padding-top: 50%;
+  margin-bottom: 20px;
+}
+
+body.page-current .stats-song-card .stats-content_right {
+  flex-direction: column;
+  vertical-align: middle;
+  justify-content: center;
+  text-align: center;
+  flex: unset;
+  font-size: 3em;
+}
+
+body.page-current .stats-song-card .stats-content{
+  flex-direction: column;
+  justify-content: center;
+}
+
+body.page-current .stats-content > div{
+  margin: 0 auto;
+}
 
 @media only screen and (max-width: 1200px) {
   .stats,.top-charts {
@@ -173,4 +203,9 @@ body {
 		display: flex;
 		flex-direction: column;
 	}
+
+  body.page-current .stats-song-card .stats-content_left{
+    width: 75%;
+    padding-top: 75%;
+  }
 }

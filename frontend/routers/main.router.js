@@ -70,6 +70,31 @@ router.get('/', (req, res) => {
         })
 })
 
+
+router.get('/current', (req, res) => {
+    let data = {};
+
+    new Promise((resolve, reject) => {
+        LAST_FM_CONTROLLER.getLatestSong(response => {
+            resolve({ ...data, current_track: response });
+        })
+    })
+        .then((data) => {
+            return new Promise((resolve, reject) => {
+                LAST_FM_CONTROLLER.getUserInfo(response => {
+                    resolve({ ...data, ...response });
+                })
+            })
+
+        })
+
+        .then((data) => {
+            if (data.current_track == undefined) data.current_track = {};
+            res.render('current', { page: "current", ...data })
+        })
+})
+
+
 router.use((req, res) => res.redirect('/'));
 
 module.exports = router;
