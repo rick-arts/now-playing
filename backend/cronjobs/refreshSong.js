@@ -30,3 +30,14 @@ let pug = require("pug");
 		}
 	})
 }, null, true, 'UTC')).start();
+
+
+(new CronJob('5 */5 * * * *', function () {
+	LAST_FM_CONTROLLER.reloadLatestTracks((tracks) => {
+		if (tracks.length == 0) return;
+		let html = pug.renderFile('./frontend/views/responses/top-chart.pug', { content: tracks, force_images: true });
+		WEBSOCKET_CONTROLLER.broadcastMessage('latest_tracks', { html });
+	})
+}, null, true, 'UTC')).start();
+
+
