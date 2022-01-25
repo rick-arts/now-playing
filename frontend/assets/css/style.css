@@ -229,6 +229,16 @@ body.page-index .top-charts_left .top-chart-content{
   width: 0px;
 }
 
+footer{
+  margin-top: 20px;
+  text-align: center;
+}
+
+footer a{
+  color: white;
+  text-decoration: none;
+}
+
 @media only screen and (max-width: 1200px) {
   .stats,.top-charts {
     flex-direction: column;
