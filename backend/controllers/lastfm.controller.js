@@ -27,9 +27,7 @@ exports.callApi = (api_route, data = {}, resolve) => {
 			"Content-Type": "application/json",
 		},
 	};
-
-	// $endpoint = 'https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=' . $user . '&limit=2&api_key=' . $key . '&format=json';
-
+	
 	data = {
 		...data,
 		method: api_route,
@@ -157,7 +155,6 @@ exports.reloadTopTracks = (resolve) => {
 	controller.callApi('user.gettoptracks', {limit: 6, period: '7day'}, (response) => {
 		if (!response || !response.toptracks) return resolve([]);
 		
-
 		top_tracks = [];
 
 		for(track of response.toptracks.track){
