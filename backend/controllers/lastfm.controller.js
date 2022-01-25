@@ -174,9 +174,10 @@ exports.getLatestTracks  = (resolve) => resolve(latest_tracks)
 
 
 exports.reloadLatestTracks = (resolve) => {
-		controller.callApi('user.getrecenttracks', { limit: 12 }, (response) => {
+		controller.callApi('user.getrecenttracks', { limit: 13 }, (response) => {
 			if (!response.recenttracks || !response.recenttracks.track) return resolve([]);
 			if(response.recenttracks.track.length > 12)	delete response.recenttracks.track[0];
+			if(response.recenttracks.track.length > 13)	delete response.recenttracks.track[13];
 			latest_tracks = [];
 			for(track of response.recenttracks.track){
 				if(track == undefined) continue;
