@@ -1,16 +1,36 @@
 mixin stats-card(card)
-	div.stats-card&attributes(attributes)
-		div.stats-title #{card.title}
-		div.stats-content
+	div.card.stats-card&attributes(attributes)
+		div.card-title.stats-title #{card.title}
+		div.card-content.stats-content
 			div.stats-value #{card.value}
 			div.stats-description #{card.description}
 
 
 mixin stats-song-card(card)
 	div.stats-song-card&attributes(attributes)
-		div.stats-title #{card.title}
+		div.card-title.stats-title #{card.title}
 		div.stats-content
 			div.stats-content_left(style="background-image:url("+card.image+")")
 			div.stats-content_right
 				div.stats-song #{card.song}
 				div.stats-artist #{card.artist}
+
+mixin top-chart(card)
+	div.card.top-chart&attributes(attributes)
+		div.card-title.top-chart-title #{card.title}
+		+top-chart-content(card.content)
+		
+mixin top-chart-content(content)
+	div.top-chart-content
+		each row of content	
+			+top-chart-row(row)
+
+
+mixin top-chart-row(row)
+	div.top-chart-row
+		div.top-chart-row_left(style="background-image:url("+row.image+")")
+		div.top-chart-row_right
+				div.top-chart-value
+					| #{row.name || row.title}
+					if(row.artist)
+						span.artist #{row.artist}

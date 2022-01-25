@@ -9,6 +9,12 @@ ws.onmessage = function (event) {
 	else if(data.channel == "user_info"){
 		refreshScrobbles(data);
 	}
+	else if(data.channel == "top_artists"){
+		refreshTopArtists(data);
+	}
+	else if(data.channel == "top_tracks"){
+		refreshTopTracks(data);
+	}
 };
 
 ws.onclose = function(){
@@ -32,5 +38,15 @@ function refreshSong(data){
 
 function refreshScrobbles(data){
 	$("#scrobbles .stats-value").html(data.scrobbles);
+}
+
+
+function refreshTopArtists(data){
+	$("#top-artists .top-chart-content").replaceWith(data.html);
+}
+
+
+function refreshTopTracks(data){
+	$("#top-tracks .top-chart-content").replaceWith(data.html);
 }
 

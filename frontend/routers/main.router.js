@@ -49,6 +49,22 @@ router.get('/', (req, res) => {
         })
 
         .then((data) => {
+            return new Promise((resolve, reject) => {
+                LAST_FM_CONTROLLER.getTopArtists(response => {
+                    resolve({ ...data, artists: response });
+                })
+            })
+            
+        })
+
+        .then((data) => {
+            return new Promise((resolve, reject) => {
+                LAST_FM_CONTROLLER.getTopTracks(response => {
+                    resolve({ ...data, tracks: response });
+                })
+            })  
+        })
+        .then((data) => {
             if (data.current_track == undefined) data.current_track = {};
             res.render('index', { page: "index", ...data })
         })

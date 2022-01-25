@@ -15,6 +15,9 @@ const controller = this;
 
 let latest_track = {};
 let user_info = {};
+let reload_tick = -1;
+let top_artists = [];
+let top_tracks = [];
 
 exports.callApi = (api_route, data = {}, resolve) => {
 	if (api_route == "" || api_route == null || api_route === undefined) resolve(null);
@@ -68,47 +71,100 @@ exports.callApi = (api_route, data = {}, resolve) => {
 exports.getLatestSong = (resolve) => resolve(latest_track)
 
 exports.reloadLatestSong = (resolve) => {
-	controller.callApi('user.getrecenttracks', { limit: 2 }, (response) => {
-		if(!response.recenttracks || !response.recenttracks.track || !response.recenttracks.track[0]) return resolve(null);
-		
-		const track = response.recenttracks.track[0];
-		
-		let current_track = {
-			artist: track.artist['#text'],
-			song: track.name,
-			url: track.url,
-			attr: track['@attr'],
-			title: "Last Played",
-			nowplaying: false,
-			image: null
-			
-		};
-		if(current_track.attr) current_track.nowplaying = current_track.attr.nowplaying;
-		if(current_track.nowplaying) current_track.title = "Now Playing";
-		
-		if(track.image){
-			let image = track.image[3];
-			if(image == undefined) image = track.image[0];
-			current_track.image = image["#text"].replace('300x300', '600x600');
-		}
 
-		latest_track = current_track;
-		
-		resolve(current_track);
-	})
+	if (reload_tick == '-1' || latest_track.nowplaying || (reload_tick > 2)) {
+		reload_tick = 0;
+
+		controller.callApi('user.getrecenttracks', { limit: 2 }, (response) => {
+			if (!response.recenttracks || !response.recenttracks.track || !response.recenttracks.track[0]) return resolve(null);
+
+			const track = response.recenttracks.track[0];
+
+			let current_track = {
+				artist: track.artist['#text'],
+				song: track.name,
+				url: track.url,
+				attr: track['@attr'],
+				title: "Last Played",
+				nowplaying: false,
+				image: null
+
+			};
+			if (current_track.attr) current_track.nowplaying = current_track.attr.nowplaying;
+			if (current_track.nowplaying) current_track.title = "Now Playing";
+
+			if (track.image) {
+				let image = track.image[3];
+				if (image == undefined) image = track.image[0];
+				current_track.image = image["#text"].replace('300x300', '600x600');
+			}
+
+			latest_track = current_track;
+
+			resolve(current_track);
+		})
+	}
+	else reload_tick++;
 }
 
 exports.preLoad = () => {
-	controller.reloadLatestSong(() => {});
-	controller.reloadUserInfo(() => {});
+	if(process.env.DEVELOPMENT) return;
+	controller.reloadLatestSong(() => { });
+	controller.reloadUserInfo(() => { });
+	controller.reloadTopArtists(() => {});
+	controller.reloadTopTracks(() => {});
 }
 
 exports.getUserInfo = (resolve) => resolve(user_info);
 
 exports.reloadUserInfo = (resolve) => {
-	controller.callApi('user.getinfo', { }, (response) => {
-		if(!response || !response.user) return resolve({name: '', scrobbles: 0});
-		user_info = {name: response.user.realname, scrobbles: response.user.playcount};
+	controller.callApi('user.getinfo', {}, (response) => {
+		if (!response || !response.user) return resolve({ name: '', scrobbles: 0 });
+		user_info = { name: response.user.realname, scrobbles: response.user.playcount };
 		resolve(user_info)
+	})
+} 
+
+exports.getTopArtists = (resolve) => resolve(top_artists);
+exports.getTopTracks = (resolve) => resolve(top_tracks);
+
+
+exports.reloadTopArtists = (resolve) => {
+
+	controller.callApi('user.gettopartists', {limit: 6, period: '7day'}, (response) => {
+		if (!response || !response.topartists) return resolve([]);
+
+		top_artists = [];
+
+		for(artist of response.topartists.artist){
+			let object = {name: artist.name};
+			let image = artist.image[3];
+			if (image == undefined) image = artist.image[0];
+			object.image = image["#text"].replace('300x300', '600x600');
+			top_artists.push(object);
+		}
+
+		resolve(top_artists);
+	})
+} 
+
+
+exports.reloadTopTracks = (resolve) => {
+
+	controller.callApi('user.gettoptracks', {limit: 6, period: '7day'}, (response) => {
+		if (!response || !response.toptracks) return resolve([]);
+		
+
+		top_tracks = [];
+
+		for(track of response.toptracks.track){
+			let object = {name: track.name,artist: track.artist.name};
+			let image = track.image[3];
+			if (image == undefined) image = track.image[0];
+			object.image = image["#text"].replace('300x300', '600x600');
+			top_tracks.push(object);
+		}
+
+		resolve(top_tracks);
 	})
 } 
