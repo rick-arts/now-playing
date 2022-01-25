@@ -5,11 +5,11 @@ Docker image that display a Now Playing Screen based on the LastFM API created t
 
 **Endpoints**
 
-[[server]/](https://nowplaying.roefja.dev) Main stats screen
+[[server]/](https://nowplaying.rickarts.dev) Main stats screen
 
-[[server]/current](https://nowplaying.roefja.dev/current) Displays current song
+[[server]/current](https://nowplaying.rickarts.dev/current) Displays current song
 
-[[server]/latest](https://nowplaying.roefja.dev/latest) Shows current stats and latest songs overview
+[[server]/latest](https://nowplaying.rickarts.dev/latest) Shows current stats and latest songs overview
 
 **Environment**
 - LAST_FM_USER - LastFM username
