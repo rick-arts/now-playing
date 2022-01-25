@@ -225,6 +225,10 @@ body.page-index .top-charts_left .top-chart-content{
   flex-direction: column;
 }
 
+body.page-current .stats-song-card .stats-content_left.hide{
+  padding-top: 0;
+}
+
 .stats-song-card .stats-content_left.hide{
   width: 0px;
 }
