@@ -165,8 +165,8 @@ body.page-current .card-title{
 }
 
 body.page-current .stats-song-card .stats-content_left{
-  width: 50%;
-  padding-top: 50%;
+  width: 30%;
+  padding-top: 30%;
   margin-bottom: 20px;
 }
 
@@ -191,6 +191,11 @@ body.page-current .stats-content > div{
 @media only screen and (max-width: 1200px) {
   .stats,.top-charts {
     flex-direction: column;
+  }
+
+  body.page-current .stats-song-card .stats-content_left{
+    width: 50%;
+    padding-top: 50%;
   }
 }
 
