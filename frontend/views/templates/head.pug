@@ -9,5 +9,10 @@ head
     link(rel="stylesheet" type="text/css" media="all" href="/assets/"+css_folder+"/style.css?v=" + VERSION)
     title #{name ? name + " | ": ""} Now Playing
 
-
+    if(process.env.DISABLE_GIF)
+        style
+            .
+                .top-chart-row_left{
+                    background-image: unset
+                }
     
