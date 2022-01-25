@@ -122,9 +122,13 @@ body {
   padding-top: 30%;
   background: url("/assets/img/cat-jam.gif");
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: contain;
   background-position: center;
   margin: auto;
+}
+
+#latest-tracks .top-chart-row:nth-child(2n) .top-chart-row_left{
+  background-image: url("/assets/img/bunny-dancing.gif");
 }
 
 .top-chart-row_right{
