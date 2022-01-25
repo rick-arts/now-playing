@@ -10,10 +10,23 @@
  */
 
  let CronJob = require('cron').CronJob;
+ let pug = require("pug");
  
  (new CronJob('*/5 * * * * *', function () {
 	 LAST_FM_CONTROLLER.reloadLatestSong((song, needs_refresh) => {
-		 if(needs_refresh) WEBSOCKET_CONTROLLER.broadcastMessage('latest_song', song);
+		 if(needs_refresh) {
+			 WEBSOCKET_CONTROLLER.broadcastMessage('latest_song', song);
+		 }
 	 })
  }, null, true, 'UTC')).start();
+
+
+ (new CronJob('5 * * * * *', function () {
+	LAST_FM_CONTROLLER.reloadLatestTracks((tracks) => {
+		if(tracks.length == 0) return;
+		let html = pug.renderFile('./frontend/views/responses/top-chart.pug', {content: tracks, force_images: true});
+		WEBSOCKET_CONTROLLER.broadcastMessage('latest_tracks', {html});	
+	})
+}, null, true, 'UTC')).start();
+
  

@@ -31,8 +31,6 @@ server.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 
 require('./backend/cronjobs/cronjobs');
 
-
-
 LAST_FM_CONTROLLER.preLoad();
 
 

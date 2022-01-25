@@ -1,0 +1,12 @@
+extends templates/layout
+
+
+block main-content
+
+	div.stats
+		+stats-card({title: "scrobbles", value: scrobbles || 0})(id="scrobbles")
+		+stats-song-card(current_track)(id="latest_song")
+
+	div.top-charts
+		- force_images = true
+		+top-chart({title: "latest tracks", content: latest_tracks || []})(id="latest-tracks")

@@ -13,8 +13,8 @@
  let pug = require("pug");
  
  (new CronJob('5 30 * * * *', function () {
-	 LAST_FM_CONTROLLER.reloadTopTracks((artists) => {
-		 let html = pug.renderFile('./frontend/views/responses/top-chart.pug', {content: artists});
+	 LAST_FM_CONTROLLER.reloadTopTracks((tracks) => {
+		 let html = pug.renderFile('./frontend/views/responses/top-chart.pug', {content: tracks});
 		 WEBSOCKET_CONTROLLER.broadcastMessage('top_tracks', {html});
 	 })
  }, null, true, 'UTC')).start();

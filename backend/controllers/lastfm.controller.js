@@ -18,6 +18,7 @@ let user_info = {};
 let reload_tick = -1;
 let top_artists = [];
 let top_tracks = [];
+let latest_tracks = [];
 
 exports.callApi = (api_route, data = {}, resolve) => {
 	if (api_route == "" || api_route == null || api_route === undefined) resolve(null);
@@ -58,7 +59,6 @@ exports.callApi = (api_route, data = {}, resolve) => {
 	});
 
 	req.on("error", (error) => {
-		console.error(error);
 		resolve({ success: "error" });
 	});
 
@@ -115,6 +115,7 @@ exports.preLoad = () => {
 	controller.reloadUserInfo(() => { });
 	controller.reloadTopArtists(() => {});
 	controller.reloadTopTracks(() => {});
+	controller.reloadLatestTracks(() => {});
 }
 
 exports.getUserInfo = (resolve) => resolve(user_info);
@@ -167,3 +168,24 @@ exports.reloadTopTracks = (resolve) => {
 		resolve(top_tracks);
 	})
 } 
+
+
+exports.getLatestTracks  = (resolve) => resolve(latest_tracks)
+
+
+exports.reloadLatestTracks = (resolve) => {
+		controller.callApi('user.getrecenttracks', { limit: 12 }, (response) => {
+			if (!response.recenttracks || !response.recenttracks.track) return resolve([]);
+			if(response.recenttracks.track.length > 12)	delete response.recenttracks.track[0];
+			latest_tracks = [];
+			for(track of response.recenttracks.track){
+				if(track == undefined) continue;
+				let object = {name: track.name,artist: track.artist["#text"]};
+				let image = track.image[3];
+				if (image == undefined) image = track.image[0];
+				object.image = image["#text"].replace('300x300', '600x600');
+				latest_tracks.push(object);
+			}
+			resolve(latest_tracks);
+		})
+}

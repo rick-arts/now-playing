@@ -15,6 +15,13 @@ ws.onmessage = function (event) {
 	else if (data.channel == "top_tracks") {
 		refreshTopTracks(data);
 	}
+
+	else if (data.channel == "latest_tracks") {
+		refreshLatestTracks(data);
+	}
+	else{
+		console.log(data);
+	}
 };
 
 ws.onclose = function () {
@@ -46,5 +53,10 @@ function refreshTopArtists(data) {
 
 function refreshTopTracks(data) {
 	$("#top-tracks .top-chart-content").replaceWith(data.html);
+}
+
+
+function refreshLatestTracks(data) {
+	$("#latest-tracks .top-chart-content").replaceWith(data.html);
 }
 

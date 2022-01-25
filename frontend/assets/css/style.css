@@ -181,6 +181,10 @@ body.page-current .stats-content > div{
   margin: 0 auto;
 }
 
+#latest-tracks .top-chart-content {
+  grid-template-columns: repeat(3, 1fr);
+}
+
 @media only screen and (max-width: 1200px) {
   .stats,.top-charts {
     flex-direction: column;
@@ -189,6 +193,10 @@ body.page-current .stats-content > div{
   body.page-current .stats-song-card .stats-content_left{
     width: 50%;
     padding-top: 50%;
+  }
+
+  #latest-tracks .top-chart-content {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 

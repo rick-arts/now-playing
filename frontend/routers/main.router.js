@@ -85,12 +85,41 @@ router.get('/current', (req, res) => {
                     resolve({ ...data, ...response });
                 })
             })
+        })
+        .then((data) => {
+            if (data.current_track == undefined) data.current_track = {};
+            res.render('current', { page: "current", ...data })
+        })
+})
 
+router.get('/latest', (req, res) => {
+    let data = {};
+
+    new Promise((resolve, reject) => {
+        LAST_FM_CONTROLLER.getLatestSong(response => {
+            resolve({ ...data, current_track: response });
+        })
+    })
+        .then((data) => {
+            return new Promise((resolve, reject) => {
+                LAST_FM_CONTROLLER.getUserInfo(response => {
+                    resolve({ ...data, ...response });
+                })
+            })
+        })
+
+
+        .then((data) => {
+            return new Promise((resolve, reject) => {
+                LAST_FM_CONTROLLER.getLatestTracks(response => {
+                    resolve({ ...data, latest_tracks: response });
+                })
+            })
         })
 
         .then((data) => {
             if (data.current_track == undefined) data.current_track = {};
-            res.render('current', { page: "current", ...data })
+            res.render('latest', { page: "latest", ...data })
         })
 })
 

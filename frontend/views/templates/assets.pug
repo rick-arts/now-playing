@@ -18,7 +18,10 @@ mixin stats-song-card(card)
 mixin top-chart(card)
 	div.card.top-chart&attributes(attributes)
 		div.card-title.top-chart-title #{card.title}
-		+top-chart-content(card.content)
+		if(block)
+			block
+		else 
+			+top-chart-content(card.content)
 		
 mixin top-chart-content(content)
 	div.top-chart-content
@@ -28,7 +31,7 @@ mixin top-chart-content(content)
 
 mixin top-chart-row(row)
 	div.top-chart-row
-		if(!process.env.TOP_CHART_HIDE_IMAGES)
+		if(force_images || !process.env.TOP_CHART_HIDE_IMAGES)
 			div.top-chart-row_left(style="background-image:url("+row.image+")")
 		div.top-chart-row_right
 				div.top-chart-value
