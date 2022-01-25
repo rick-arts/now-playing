@@ -111,7 +111,7 @@ exports.reloadLatestSong = (resolve) => {
 }
 
 exports.preLoad = () => {
-	//if(process.env.DEVELOPMENT) return;
+	if(process.env.DEVELOPMENT) return;
 	controller.reloadLatestSong(() => { });
 	controller.reloadUserInfo(() => { });
 	controller.reloadTopArtists(() => {});
