@@ -31,7 +31,7 @@ mixin top-chart-content(content)
 
 mixin top-chart-row(row)
 	div.top-chart-row
-		if((force_images || !process.env.TOP_CHART_HIDE_IMAGES))
+		if((force_images || (!process.env.TOP_CHART_HIDE_IMAGES && row.image !== null)))
 			div.top-chart-row_left(style=(row.image !== null ? "background-image:url("+row.image+")" : ""))
 		div.top-chart-row_right
 				div.top-chart-value
