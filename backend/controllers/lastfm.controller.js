@@ -99,12 +99,16 @@ exports.reloadLatestSong = (resolve) => {
 				current_track.image = image["#text"].replace('300x300', '600x600');
 			}
 
+			needs_refresh = (latest_track.artist != current_track.artist || latest_track.song != current_track.song || latest_track.title != current_track.title)
+
 			latest_track = current_track;
 
-			resolve(current_track);
+			resolve(current_track,needs_refresh);
 		})
 	}
 	else reload_tick++;
+
+	resolve(latest_track, false);
 }
 
 exports.preLoad = () => {

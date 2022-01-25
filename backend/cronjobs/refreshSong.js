@@ -12,8 +12,8 @@
  let CronJob = require('cron').CronJob;
  
  (new CronJob('*/5 * * * * *', function () {
-	 LAST_FM_CONTROLLER.reloadLatestSong((song) => {
-		 WEBSOCKET_CONTROLLER.broadcastMessage('latest_song', song);
+	 LAST_FM_CONTROLLER.reloadLatestSong((song, needs_refresh) => {
+		 if(needs_refresh) WEBSOCKET_CONTROLLER.broadcastMessage('latest_song', song);
 	 })
  }, null, true, 'UTC')).start();
  
