@@ -40,6 +40,8 @@ function refreshSong(data) {
 	$("#latest_song .stats-song").html(data.song);
 	$("#latest_song .stats-artist").html(data.artist);
 	$("#latest_song .stats-title").html(data.title);
+	if(data.image) $("#latest_song .stats-content_left").removeClass("hide")
+	else $("#latest_song .stats-content_left").addClass('hide');
 	$("#latest_song .stats-content_left").css('background-image', 'url("' + data.image + '")')
 }
 

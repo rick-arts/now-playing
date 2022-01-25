@@ -95,6 +95,7 @@ exports.reloadLatestSong = (resolve) => {
 				let image = track.image[3];
 				if (image == undefined) image = track.image[0];
 				current_track.image = image["#text"].replace('300x300', '600x600');
+				if(current_track.image.includes('2a96cbd8b46e442fc41c2b86b821562f.png')) current_track.image = null;
 			}
 
 			needs_refresh = (latest_track.artist != current_track.artist || latest_track.song != current_track.song || latest_track.title != current_track.title)
@@ -110,7 +111,7 @@ exports.reloadLatestSong = (resolve) => {
 }
 
 exports.preLoad = () => {
-	if(process.env.DEVELOPMENT) return;
+	//if(process.env.DEVELOPMENT) return;
 	controller.reloadLatestSong(() => { });
 	controller.reloadUserInfo(() => { });
 	controller.reloadTopArtists(() => {});
@@ -144,6 +145,7 @@ exports.reloadTopArtists = (resolve) => {
 			let image = artist.image[3];
 			if (image == undefined) image = artist.image[0];
 			object.image = image["#text"].replace('300x300', '600x600');
+			if(object.image.includes('2a96cbd8b46e442fc41c2b86b821562f.png')) object.image = null;
 			top_artists.push(object);
 		}
 
@@ -163,6 +165,7 @@ exports.reloadTopTracks = (resolve) => {
 			let image = track.image[3];
 			if (image == undefined) image = track.image[0];
 			object.image = image["#text"].replace('300x300', '600x600');
+			if(object.image.includes('2a96cbd8b46e442fc41c2b86b821562f.png')) object.image = null;
 			top_tracks.push(object);
 		}
 		resolve(top_tracks);
@@ -185,6 +188,8 @@ exports.reloadLatestTracks = (resolve) => {
 				let image = track.image[3];
 				if (image == undefined) image = track.image[0];
 				object.image = image["#text"].replace('300x300', '600x600');
+				if(object.image.includes('2a96cbd8b46e442fc41c2b86b821562f.png')) object.image = null;
+
 				latest_tracks.push(object);
 			}
 			resolve(latest_tracks);

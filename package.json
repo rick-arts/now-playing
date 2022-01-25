@@ -1,6 +1,6 @@
 {
   "name": "now-playing",
-  "version": "1.2.4",
+  "version": "1.2.5",
   "description": "Now Playing Screen",
   "main": "server.js",
   "scripts": {
