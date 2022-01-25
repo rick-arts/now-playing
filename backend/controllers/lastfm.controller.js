@@ -148,7 +148,6 @@ exports.reloadTopArtists = (resolve) => {
 	})
 } 
 
-
 exports.reloadTopTracks = (resolve) => {
 
 	controller.callApi('user.gettoptracks', {limit: 6, period: '7day'}, (response) => {
@@ -164,7 +163,6 @@ exports.reloadTopTracks = (resolve) => {
 			object.image = image["#text"].replace('300x300', '600x600');
 			top_tracks.push(object);
 		}
-
 		resolve(top_tracks);
 	})
 } 
