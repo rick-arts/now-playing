@@ -109,6 +109,7 @@ body {
   grid-column-gap: 30px;
   grid-row-gap: 30px;
   flex: 1;
+  justify-content: space-around;
 }
 
 .top-chart-row {
@@ -215,6 +216,10 @@ body.page-index #latest-tracks .top-chart-row:nth-child(n+7){
 }
 
 
+body.page-index .top-charts_left .top-chart-content{
+  display:flex;
+  flex-direction: column;
+}
 
 @media only screen and (max-width: 1200px) {
   .stats,.top-charts {
