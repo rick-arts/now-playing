@@ -64,6 +64,16 @@ router.get('/', (req, res) => {
                 })
             })  
         })
+
+
+        .then((data) => {
+            return new Promise((resolve, reject) => {
+                LAST_FM_CONTROLLER.getLatestTracks(response => {
+                    resolve({ ...data, latest_tracks: response });
+                })
+            })
+        })
+
         .then((data) => {
             if (data.current_track == undefined) data.current_track = {};
             res.render('index', { page: "index", ...data })

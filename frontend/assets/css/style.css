@@ -185,6 +185,10 @@ body.page-current .stats-content > div{
   grid-template-columns: repeat(3, 1fr);
 }
 
+body.page-index #latest-tracks .top-chart-row:nth-child(n+4){
+  display: none;
+}
+
 @media only screen and (max-width: 1200px) {
   .stats,.top-charts {
     flex-direction: column;
@@ -197,6 +201,10 @@ body.page-current .stats-content > div{
 
   #latest-tracks .top-chart-content {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  body.page-index #latest-tracks .top-chart-row{
+    display: unset !important;
   }
 }
 
