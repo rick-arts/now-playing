@@ -8,9 +8,11 @@ block main-content
 		+stats-song-card(current_track)(id="latest_song")
 
 	div.top-charts
-		+top-chart({title: "top artists", content: artists})(id="top-artists")
-		+top-chart({title: "top tracks", content: tracks || []})(id="top-tracks")
+		div.top-charts_left
+			+top-chart({title: "top artists", content: artists})(id="top-artists")
+			+top-chart({title: "top tracks", content: tracks || []})(id="top-tracks")
+		div.top-charts_right
+			- force_images = true
+			+top-chart({title: "latest tracks", content: latest_tracks || []})(id="latest-tracks")
 	
-	div.top-charts
-		- force_images = true
-		+top-chart({title: "latest tracks", content: latest_tracks || []})(id="latest-tracks")
+	//-div.top-charts
