@@ -12,7 +12,7 @@
     "url": "git+https://github.com/rick-arts/now-playing.git"
   },
   "author": "Rick Arts",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/rick-arts/now-playing/issues"
   },
