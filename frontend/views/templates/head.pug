@@ -7,7 +7,7 @@ head
     link(href='https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Permanent+Marker&display=swap' rel='stylesheet')
     link(rel="stylesheet" type="text/css" media="all" href="/assets/"+css_folder+"/fontawesome.min.css?v=" + VERSION)
     link(rel="stylesheet" type="text/css" media="all" href="/assets/"+css_folder+"/style.css?v=" + VERSION)
-    title #{name || ""} | Now Playing
+    title #{name ? name + " | ": ""} Now Playing
 
 
     
