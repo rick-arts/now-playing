@@ -4,7 +4,7 @@
  * 
  * This is the main router
  * 
- * @author Roefja
+ * @author Rick Arts
  * @since v1.0.0
  * 
  */

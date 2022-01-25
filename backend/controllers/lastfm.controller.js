@@ -4,7 +4,7 @@
  * 
  * This is the lastfm controller
  * 
- * @author Roefja
+ * @author Rick Arts
  * @since v1.0.0
  * 
  */
@@ -27,7 +27,7 @@ exports.callApi = (api_route, data = {}, resolve) => {
 			"Content-Type": "application/json",
 		},
 	};
-	
+
 	data = {
 		...data,
 		method: api_route,

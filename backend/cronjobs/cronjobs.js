@@ -4,7 +4,7 @@
  *
  * Main cronjobs file
  *
- * @author Roefja
+ * @author Rick Arts
  * @since v0.0.1
  *
  */

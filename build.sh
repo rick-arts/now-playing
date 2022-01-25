@@ -31,6 +31,3 @@ docker tag registry.roefja.dev/"$PROJECT"/"$BASENAME" registry.roefja.dev/"$PROJ
 fi
 
 docker push -q --all-tags registry.roefja.dev/"$PROJECT"/"$BASENAME" 
-
-docker tag registry.roefja.dev/rickarts/now-playing rickarts/now-playing
-docker push -q --all-tags rickarts/now-playing

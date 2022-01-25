@@ -2,7 +2,7 @@ FROM node:alpine3.13 as BUILD_IMAGE
 
 ENV NODE_ENV production
 
-LABEL maintainer="Roefja | www.roefja.com"
+LABEL maintainer="Rick Arts | www.rickarts.dev"
 
 WORKDIR /usr/src/app
 
