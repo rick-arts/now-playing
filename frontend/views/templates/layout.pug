@@ -4,7 +4,7 @@ doctype html
 html(lang="nl-nl")
     include head
 
-    body(class="page-"+page)
+    body(class="page-"+page + " " + (SETTINGS_CONTROLLER.getSetting("disco") === true ? "disco" : ""))
         div#main-page
             div#main-content
                 block main-content

@@ -16,7 +16,7 @@ let pug = require("pug");
 	LAST_FM_CONTROLLER.reloadLatestSong((song, needs_refresh) => {
 		if (needs_refresh) {
 			WEBSOCKET_CONTROLLER.broadcastMessage('latest_song', song);
-
+		
 			LAST_FM_CONTROLLER.reloadLatestTracks((tracks) => {
 				if (tracks.length == 0) return;
 				let html = pug.renderFile('./frontend/views/responses/top-chart.pug', { content: tracks, force_images: true });

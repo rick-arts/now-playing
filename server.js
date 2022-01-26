@@ -19,6 +19,7 @@ global.WEBSOCKET = new WebSocketServer({server});
 global.LAST_FM_CONTROLLER = require("./backend/controllers/lastfm.controller");
 global.FRONTEND_CONTROLLER = require("./frontend/controllers/frontend.controller");
 global.WEBSOCKET_CONTROLLER = require("./backend/controllers/websocket.controller.js");
+global.SETTINGS_CONTROLLER = require("./backend/controllers/settings.controller.js");
 
 app.use("/api", require("./backend/routers/main.router"));
 app.use("", require("./frontend/routers/main.router"));

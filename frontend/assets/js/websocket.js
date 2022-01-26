@@ -19,6 +19,11 @@ ws.onmessage = function (event) {
 	else if (data.channel == "latest_tracks") {
 		refreshLatestTracks(data);
 	}
+
+	else if (data.channel == "disco") {
+		setDisco(data);
+	}
+
 	else{
 		console.log(data);
 	}
@@ -62,3 +67,7 @@ function refreshLatestTracks(data) {
 	$("#latest-tracks .top-chart-content").replaceWith(data.html);
 }
 
+function setDisco(data){
+	if(data.disco === true) $("body").addClass('disco');
+	else $("body").removeClass('disco');
+}
