@@ -13,11 +13,20 @@ const fs = require("fs");
 
 const controller = this;
 
-exports.getSettings = () => {
-	if (!fs.existsSync('uploads/settings.json')) return {};
-	return JSON.parse(fs.readFileSync('uploads/settings.json', 'utf8'));
+const settings = {}
+
+exports.loadDefaultSettings = () => {
+	if (!fs.existsSync('uploads/settings.json')) return settings = {};
+	settings = JSON.parse(fs.readFileSync('uploads/settings.json', 'utf8'));
 }
 
+exports.getSettings = () => { return settings };
+
 exports.getSetting = (key) => {
-	return controller.getSettings()[key];
+	console.log({key, value: settings[key]})
+	return settings[key];
+}
+
+exports.setSetting = (key, value) => {
+	settings[key] = value;
 }

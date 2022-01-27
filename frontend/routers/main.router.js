@@ -133,6 +133,16 @@ router.get('/latest', (req, res) => {
         })
 })
 
+router.get('/disco/:setting', (req, res) => {
+    if(process.env.DISCO_KEY !== undefined){
+        if(req.query.discokey == undefined || req.query.discokey != process.env.DISCO_KEY) return res.send('Nice try');
+    }
+    
+    let parsed = req.params.setting == 'true';
+    WEBSOCKET_CONTROLLER.broadcastMessage('disco', {disco: parsed});
+    SETTINGS_CONTROLLER.setSetting('disco', parsed);
+    res.send({disco: parsed})
+})
 
 router.use((req, res) => res.redirect('/'));
 
