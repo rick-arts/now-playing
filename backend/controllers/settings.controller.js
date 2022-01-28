@@ -22,10 +22,7 @@ exports.loadDefaultSettings = () => {
 
 exports.getSettings = () => { return settings };
 
-exports.getSetting = (key) => {
-	console.log({key, value: settings[key]})
-	return settings[key];
-}
+exports.getSetting = (key) => { return settings[key]; }
 
 exports.setSetting = (key, value) => {
 	settings[key] = value;
