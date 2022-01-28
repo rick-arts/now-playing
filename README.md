@@ -11,6 +11,10 @@ Docker image that display a Now Playing Screen based on the LastFM API created t
 
 [[server]/latest](https://nowplaying.rickarts.dev/latest) Shows current stats and latest songs overview
 
+[[server]/disco/true](#) Enables disco mode
+
+[[server]/disco/false](#) Disables disco mode
+
 **Environment**
 - LAST_FM_USER - LastFM username
 - LAST_FM_API_KEY - LastFM api key
