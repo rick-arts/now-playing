@@ -12,7 +12,7 @@ let pug = require("pug");
 
 (new CronJob('5 */15 * * * *', function () {
 	LAST_FM_CONTROLLER.reloadTopTracks((tracks) => {
-		FRONTEND_CONTROLLER.refreshTopChart('top_tracks', tracks);
+		FRONTEND_CONTROLLER.refreshTopChart(tracks, 'top_tracks');
 	})
 }, null, true, 'UTC')).start();
 

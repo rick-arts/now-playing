@@ -18,7 +18,7 @@ const controller = this;
 exports.reloadLatestTracks = () => {
 	LAST_FM_CONTROLLER.reloadLatestTracks((tracks) => {
 		if (tracks.length == 0) return;
-		controller.refreshTopChart('latest_tracks', tracks, true);
+		controller.refreshTopChart(tracks, 'latest_tracks', true);
 	})
 }
 

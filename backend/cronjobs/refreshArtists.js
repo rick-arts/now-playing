@@ -11,7 +11,7 @@ let CronJob = require('cron').CronJob;
 
 (new CronJob('5 */15 * * * *', function () {
 	LAST_FM_CONTROLLER.reloadTopArtists((artists) => {
-		FRONTEND_CONTROLLER.refreshTopChart('top_artists', artists);
+		FRONTEND_CONTROLLER.refreshTopChart(artists, 'top_artists');
 	})
 }, null, true, 'UTC')).start();
 
