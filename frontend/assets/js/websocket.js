@@ -1,51 +1,56 @@
-const ws = new WebSocket(WEBSOCKET_URL);
+function connect() {
 
-ws.onmessage = function (event) {
-	const data = JSON.parse(event.data);
+	const ws = new WebSocket(WEBSOCKET_URL);
 
-	if (data.channel == "latest_song") {
-		refreshSong(data);
-	}
-	else if (data.channel == "user_info") {
-		refreshScrobbles(data);
-	}
-	else if (data.channel == "top_artists") {
-		refreshTopArtists(data);
-	}
-	else if (data.channel == "top_tracks") {
-		refreshTopTracks(data);
+	ws.onopen = function () { console.log("Websocket connected"); }
+
+	ws.onmessage = function (event) {
+		const data = JSON.parse(event.data);
+
+		if (data.channel == "latest_song") {
+			refreshSong(data);
+		}
+		else if (data.channel == "user_info") {
+			refreshScrobbles(data);
+		}
+		else if (data.channel == "top_artists") {
+			refreshTopArtists(data);
+		}
+		else if (data.channel == "top_tracks") {
+			refreshTopTracks(data);
+		}
+
+		else if (data.channel == "latest_tracks") {
+			refreshLatestTracks(data);
+		}
+
+		else if (data.channel == "disco") {
+			setDisco(data);
+		}
+
+		else {
+			console.log(data);
+		}
+	};
+
+	ws.onclose = function () {
+		setTimeout(function () {
+			connect();
+		}, 1000)
 	}
 
-	else if (data.channel == "latest_tracks") {
-		refreshLatestTracks(data);
+	ws.onerror = function () {
+		ws.close();
 	}
-
-	else if (data.channel == "disco") {
-		setDisco(data);
-	}
-
-	else{
-		console.log(data);
-	}
-};
-
-ws.onclose = function () {
-	setTimeout(function () {
-		location.reload();
-	}, 5000)
 }
 
-ws.onerror = function () {
-	setTimeout(function () {
-		location.reload();
-	}, 5000)
-}
+connect();
 
 function refreshSong(data) {
 	$("#latest_song .stats-song").html(data.song);
 	$("#latest_song .stats-artist").html(data.artist);
 	$("#latest_song .stats-title").html(data.title);
-	if(data.image !== null && data.image != '') $("#latest_song .stats-content_left").removeClass("hide")
+	if (data.image !== null && data.image != '') $("#latest_song .stats-content_left").removeClass("hide")
 	else $("#latest_song .stats-content_left").addClass('hide');
 	$("#latest_song .stats-content_left").css('background-image', 'url("' + data.image + '")')
 }
@@ -67,7 +72,7 @@ function refreshLatestTracks(data) {
 	$("#latest-tracks .top-chart-content").replaceWith(data.html);
 }
 
-function setDisco(data){
-	if(data.disco === true) $("body").addClass('disco');
+function setDisco(data) {
+	if (data.disco === true) $("body").addClass('disco');
 	else $("body").removeClass('disco');
 }
