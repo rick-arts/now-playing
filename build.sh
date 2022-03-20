@@ -23,8 +23,8 @@ while getopts ":v:" opt; do
 done
 shift $((OPTIND -1))
 
-
-docker build -q -t registry.roefja.dev/"$PROJECT"/"$BASENAME" .
+docker buildx use builder
+docker buildx build -q --load --platform linux/amd64 -t registry.roefja.dev/"$PROJECT"/"$BASENAME" .
 
 if [ -n "${version}" ]; then
 docker tag registry.roefja.dev/"$PROJECT"/"$BASENAME" registry.roefja.dev/"$PROJECT"/"$BASENAME":v-$version
