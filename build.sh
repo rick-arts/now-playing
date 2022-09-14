@@ -23,11 +23,13 @@ while getopts ":v:" opt; do
 done
 shift $((OPTIND -1))
 
-docker buildx use builder
-docker buildx build -q --load --platform linux/amd64 -t registry.roefja.dev/"$PROJECT"/"$BASENAME" .
+npm update --save
+
+docker buildx create --name "$PROJECT"-"$BASENAME"
+docker buildx build -q --push --platform linux/amd64 -t registry.roefja.dev/"$PROJECT"/"$BASENAME" --builder "$PROJECT"-"$BASENAME" --cache-to=type=local,dest=.dockercache/"$PROJECT"/"$BASENAME" .
 
 if [ -n "${version}" ]; then
-docker tag registry.roefja.dev/"$PROJECT"/"$BASENAME" registry.roefja.dev/"$PROJECT"/"$BASENAME":v-$version
+docker buildx build -q --push --platform linux/amd64 -t registry.roefja.dev/"$PROJECT"/"$BASENAME":v$version --builder "$PROJECT"-"$BASENAME" --cache-from=type=local,src=.dockercache/"$PROJECT"/"$BASENAME" .
 fi
 
-docker push -q --all-tags registry.roefja.dev/"$PROJECT"/"$BASENAME" 
+docker buildx rm "$PROJECT"-"$BASENAME"
