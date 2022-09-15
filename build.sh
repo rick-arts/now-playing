@@ -32,4 +32,5 @@ if [ -n "${version}" ]; then
 docker buildx build -q --push --platform linux/amd64 -t registry.roefja.dev/"$PROJECT"/"$BASENAME":v$version --builder "$PROJECT"-"$BASENAME" --cache-from=type=local,src=.dockercache/"$PROJECT"/"$BASENAME" .
 fi
 
+docker buildx build -q --push --platform linux/amd64 -t "$PROJECT"/"$BASENAME" --builder "$PROJECT"-"$BASENAME" --cache-from=type=local,src=.dockercache/"$PROJECT"/"$BASENAME" .
 docker buildx rm "$PROJECT"-"$BASENAME"
