@@ -1,6 +1,12 @@
 # Changelog
 
-## [v1.4.1](https://github.com/rick-arts/now-playing/compare/v1.4.0...v1.4.1)
+## [v1.4.2](https://github.com/rick-arts/now-playing/compare/v1.4.1...v1.4.2)
+
+### Other
+
+- Styling update [`8dd94fc`](https://github.com/rick-arts/now-playing/commit/8dd94fcc698d862f00c062c6f4e01c06fb0b5b7c)
+
+## [v1.4.1](https://github.com/rick-arts/now-playing/compare/v1.4.0...v1.4.1) - 2024-03-28
 
 ### Other
 
