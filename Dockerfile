@@ -1,4 +1,4 @@
-FROM registry.roefja.dev/library/node:alpine-prune as BUILD_IMAGE
+FROM registry.roefja.dev/core/node:alpine-prune as BUILD_IMAGE
 
 ENV NODE_ENV production
 
