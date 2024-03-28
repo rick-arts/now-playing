@@ -4,6 +4,7 @@
   "description": "Now Playing Screen",
   "main": "server.js",
   "scripts": {
+    "version": "auto-changelog -p -t https://devops.roefja.cloud/formats/changelog.hbs --hide-empty-releases && auto-changelog -p -t https://devops.roefja.cloud/formats/changelog-release.hbs --hide-empty-releases -o CHANGELOG-RELEASE.md  && git add CHANGELOG.md  && git add CHANGELOG-RELEASE.md",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
   },
