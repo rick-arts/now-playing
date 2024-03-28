@@ -13,3 +13,4 @@ deploy
 uploads
 .git
 .dockercache
+CHANGELOG*
